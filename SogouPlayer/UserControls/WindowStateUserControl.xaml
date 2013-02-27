@@ -1,0 +1,23 @@
+﻿<UserControl x:Class="SogouPlayer.UserControls.WindowStateUserControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" Width="100" Height="30">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <Button x:Name="buttonMinimize" Grid.Column="0" Style="{StaticResource imageButtonStyle}" Click="buttonMinimize_Click">
+            <Image Source="/SogouPlayer;component/Images/MinimizeButton.png" Cursor="Hand" ToolTip="Minimize"/>
+        </Button>
+        <Button x:Name="buttonMaximize" Grid.Column="1" Style="{StaticResource imageButtonStyle}" Click="buttonMaximize_Click">
+            <Image Source="/SogouPlayer;component/Images/MaximizeButton.png" Cursor="Hand" ToolTip="Maximize"/>
+        </Button>
+        <Button x:Name="buttonClose" Grid.Column="2" Style="{StaticResource imageButtonStyle}" Click="buttonClose_Click">
+            <Image Source="/SogouPlayer;component/Images/CloseButton.png" Cursor="Hand" ToolTip="Close"/>
+        </Button>
+    </Grid>
+</UserControl>

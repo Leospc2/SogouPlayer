@@ -1,0 +1,100 @@
+﻿<Window x:Class="SogouPlayer.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:userControl="clr-namespace:SogouPlayer.UserControls"
+        AllowsTransparency="True" Background="Black" WindowStyle="None" Opacity="1"
+        Title="Sogou Player - By Leo" Height="420" Width="650"
+        MouseLeftButtonDown="Window_MouseLeftButtonDown" Icon="/SogouPlayer;component/Images/CherryPlayer.ico">
+    <Window.Resources>
+    </Window.Resources>
+
+    <Grid x:Name="LayoutRoot">
+        <Grid Margin="4">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="54" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="auto" MinWidth="120" />
+                    <ColumnDefinition Width="5" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+
+                <Grid Grid.ColumnSpan="3" HorizontalAlignment="Stretch">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="100" />
+                    </Grid.ColumnDefinitions>
+                    <Grid VerticalAlignment="Top">
+                        <userControl:PlayerControlButtonsUserControl x:Name="playerControlButtons" Margin="0"/>
+                        
+                    </Grid>
+                </Grid>
+
+                <StackPanel Grid.Row="1">
+                    <Expander Background="#EEEEEE" Header="我的音乐盒">
+                        <ListBox Name="listBoxRinkingList1" MinHeight="100" />
+                    </Expander>
+                    <Expander IsExpanded="True" Background="#EEEEEE" Header="排行榜">
+                        <ListBox Name="listBoxRinkingList" MinHeight="100" SelectionChanged="listBoxRinkingList_SelectionChanged">
+                            <ListBox.ItemTemplate>
+                                <DataTemplate>
+                                    <Grid HorizontalAlignment="Stretch" Height="24" ToolTip="{Binding Name}">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition />
+                                            <ColumnDefinition />
+                                        </Grid.ColumnDefinitions>
+                                        <TextBlock Style="{StaticResource textBlockInListBoxStyle}" Grid.Column="0" Text="{Binding Path=Name}"/>
+                                        <Rectangle Grid.ColumnSpan="2" Stroke="#999" StrokeThickness="1" Height="1" HorizontalAlignment="Stretch" VerticalAlignment="Bottom"/>
+                                    </Grid>
+                                </DataTemplate>
+                            </ListBox.ItemTemplate>
+                        </ListBox>
+                    </Expander>
+                </StackPanel>
+
+
+                <Grid Grid.Row="1" Grid.Column="2" HorizontalAlignment="Stretch">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="260" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <ListBox x:Name="listBoxMusicList" HorizontalAlignment="Stretch" Grid.Column="0">
+                        <ListBox.ItemTemplate>
+                            <DataTemplate x:Name="gridDataTemplate">
+                                <Grid HorizontalAlignment="Stretch" Height="24" Style="{StaticResource gridInListBoxStyle}" ToolTip="{Binding TitleAndSinger}">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="20" />
+                                        <ColumnDefinition Width="110" />
+                                        <ColumnDefinition Width="80"/>
+                                        <ColumnDefinition Width="20"/>
+                                    </Grid.ColumnDefinitions>
+                                    <CheckBox VerticalAlignment="Center" HorizontalAlignment="Center" />
+                                    <TextBlock Style="{StaticResource textBlockInListBoxStyle}" Grid.Column="1" Text="{Binding Path=Title}"/>
+                                    <TextBlock Style="{StaticResource textBlockInListBoxStyle}" Grid.Column="2" Text="{Binding Path=Singer}"/>
+                                    <Button x:Name="smallPlayButton" Style="{StaticResource imageButtonStyle}" ToolTip="Play" HorizontalAlignment="Left" VerticalAlignment="Center" Grid.Column="3" Tag="{Binding EncodedTitleAndSinger}" Click="smallPlayButton_Click">
+                                        <Image Source="/SogouPlayer;component/Images/SmallPlayButton.png" Tag="{Binding TitleAndSinger}" />
+                                    </Button>
+                                    <Rectangle Grid.ColumnSpan="4" Stroke="#999" StrokeThickness="1" Height="1" HorizontalAlignment="Stretch" VerticalAlignment="Bottom"/>
+                                </Grid>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
+                    <!--Lyric-->
+                    <StackPanel Grid.Column="1" Background="White" Margin="1">
+                        <TextBlock Height="30" HorizontalAlignment="Center" Name="firstTextBlock" Text="" />
+                        <TextBlock Height="30" HorizontalAlignment="Center" Name="lastTextBlock" Text="" />
+                        <TextBlock Height="29" HorizontalAlignment="Center" Name="lrc02Text" Text="" TextWrapping="Wrap" Foreground="#FF28A2B6" />
+                        <TextBlock Height="29" HorizontalAlignment="Center" Name="lrc03Text" Text="" TextWrapping="Wrap" />
+                    </StackPanel>
+                    
+                </Grid>
+
+
+
+                <GridSplitter Grid.Row="1" Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Width="5" />
+            </Grid>
+        </Grid>
+    </Grid>
+</Window>

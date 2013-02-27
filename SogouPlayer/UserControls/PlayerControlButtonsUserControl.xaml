@@ -1,0 +1,41 @@
+﻿<UserControl x:Class="SogouPlayer.UserControls.PlayerControlButtonsUserControl"
+             x:Name="playerControlButtonsUserControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:mediaControl="clr-namespace:AxWMPLib;assembly=AxInterop.WMPLib"
+             mc:Ignorable="d" 
+             Height="50" Width="530">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="110" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <Grid Width="110" Grid.Column="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="30" />
+                <ColumnDefinition Width="50" />
+                <ColumnDefinition Width="30" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Button x:Name="buttonPrevious" Style="{StaticResource imageButtonStyle}" Grid.Column="0" HorizontalAlignment="Left" Width="30" ToolTip="Previous" Click="buttonPrevious_Click">
+                <Image x:Name="imagePrevious" Source="/SogouPlayer;component/Images/PreviousButton_MouseLeave.png" MouseEnter="imagePrevious_MouseEnter" MouseLeave="imagePrevious_MouseLeave"/>
+            </Button>
+            <Button x:Name="buttonPlay" Style="{StaticResource imageButtonStyle}" Grid.Column="1" Width="50" ToolTip="Play" Click="buttonPlay_Click" >
+                <Image x:Name="imagePlay" Source="/SogouPlayer;component/Images/PlayButton_MouseLeave.png" MouseEnter="imagePlay_MouseEnter" MouseLeave="imagePlay_MouseLeave"/>
+            </Button>
+            <Button x:Name="buttonNext" Style="{StaticResource imageButtonStyle}" Grid.Column="2" HorizontalAlignment="Right" Width="30" ToolTip="Next" Click="buttonNext_Click">
+                <Image x:Name="imageNext" Source="/SogouPlayer;component/Images/NextButton_MouseLeave.png" MouseEnter="imageNext_MouseEnter" MouseLeave="imageNext_MouseLeave"/>
+            </Button>
+        </Grid>
+        <Grid Grid.Column="1">
+            <WindowsFormsHost HorizontalAlignment="Stretch" Name="windowsFormsHost1" VerticalAlignment="Top" Visibility="Hidden">
+                <mediaControl:AxWindowsMediaPlayer x:Name="wpfMediaPlayer" BackColor="Control" Height="0"/>
+            </WindowsFormsHost>
+            
+            <TextBlock x:Name="currentPlayingMusicTitle" Margin="10 3 20 0" VerticalAlignment="Top" Foreground="#4aaa00" Text="" />
+            <ProgressBar Style="{StaticResource progressBarStyle}" Height="1" Margin="10 8 20 0" Value="20" />
+        </Grid>
+    </Grid>
+</UserControl>
